@@ -1,10 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { LogIn } from "lucide-react";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 export default function TopNav() {
   return (
-    <div className="flex items-center justify-between p-5 shadow">
+    <div className="flex items-center justify-center p-5 shadow space-x-10">
       <div className="text-2xl font-bold">
         <Link href="/">
           <Image
@@ -15,8 +23,17 @@ export default function TopNav() {
           />
         </Link>
       </div>
-      <div className="flex items-center space-x-2">
-        <Button>login</Button>
+
+      <div className="flex flex-col items-center">
+        <SignedOut>
+          <SignInButton >
+          <LogIn className="h-10 w-10 text-[#6a5acd] cursor-pointer"/>          
+          </SignInButton>
+        </SignedOut>
+
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </div>
   );
