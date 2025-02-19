@@ -9,10 +9,12 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 export default function TopNav() {
   return (
     <div className="flex items-center justify-center p-5 shadow space-x-10">
+     <Toaster/>
       <div className="text-2xl font-bold">
         <Link href="/">
           <Image
@@ -27,7 +29,7 @@ export default function TopNav() {
       <div className="flex flex-col items-center">
         <SignedOut>
           <SignInButton >
-          <LogIn className="h-10 w-10 text-[#6a5acd] cursor-pointer"/>          
+          <LogIn className="h-10 w-8 text-[#6a5acd] cursor-pointer"/>          
           </SignInButton>
         </SignedOut>
 
