@@ -26,7 +26,7 @@ export default function HeroImage() {
 
 
   return (
-    <div className="relative w-full h-[40vh] p-8 max-w-4xl mx-auto">
+    <div className="relative w-full h-[40vh] p-8 max-w-4xl mx-auto ">
       <Image
         src={currentImage}
         alt="ai image generator"

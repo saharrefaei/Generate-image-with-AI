@@ -3,7 +3,8 @@
 import React, { Children } from "react";
 import toast, { Toast } from "react-hot-toast";
 import { generateImageai } from "../actions/image";
-
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 interface Imagetype {
   imageUrl: string;
 }
@@ -23,12 +24,19 @@ const ImageContex = React.createContext<ImageContextType | undefined>(
 export const ImageProvider = ({ children }: { children: React.ReactNode }) => {
   const [ImagePrompt, setImagePrompt] = React.useState("");
   const [Loading, setLoading] = React.useState(false);
-  const generateImage = async () => {
-    try{
-            await generateImageai();
-
-    }catch(err){
-        toast.error('failed to generate image')
+  const { isSignedIn } = useUser();
+  const router =useRouter()
+  const generateImage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!isSignedIn) {
+      toast.loading("please sign in to generate image",{ position: "top-right" });
+    }
+    try {
+     const {_id} =  await generateImageai(ImagePrompt);
+     router.push("/dashboard/images")
+    } catch (err) {
+      toast.error("failed to generate image",{ position: "top-right" });
     }
   };
   return (
@@ -53,4 +61,3 @@ export const useImage = (): ImageContextType => {
   }
   return context;
 };
-// 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
