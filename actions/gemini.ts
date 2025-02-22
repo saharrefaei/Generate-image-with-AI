@@ -18,7 +18,6 @@ export async function runGeminiAi(message: string) {
   };
 
   const chatSession = model.startChat({
-    generationConfig,
     // safetySettings: Adjust safety settings
     // See https://ai.google.dev/gemini-api/docs/safety-settings
     history: [
